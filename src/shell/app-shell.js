@@ -24,6 +24,16 @@ import { AppTheme } from './app-theme'
 import { style } from './app-shell-style.js'
 
 class MyApp extends connect(store)(LitElement) {
+  constructor() {
+    super()
+
+    this.baseUrl = 'http://localhost:3000'
+
+    // To force all event listeners for gestures to be passive.
+    // See https://www.polymer-project.org/3.0/docs/devguide/settings#setting-passive-touch-gestures
+    setPassiveTouchGestures(true)
+  }
+
   static get properties() {
     return {
       appTitle: { type: String },
@@ -45,7 +55,8 @@ class MyApp extends connect(store)(LitElement) {
       forceNarrow: { type: Boolean },
 
       /* Board Reference Provider */
-      provider: { type: Object }
+      provider: { type: Object },
+      baseUrl: { type: String }
     }
   }
 
@@ -60,10 +71,10 @@ class MyApp extends connect(store)(LitElement) {
         @authenticated-changed=${this.onAuthenticatedChanged}
         @profile-changed=${this.onProfileChanged}
         @error-changed=${this.onAuthErrorChanged}
-        endpoint="http://localhost:3000"
+        endpoint=${this.baseUrl}
       ></auth-router>
 
-      <board-provider @change=${e => (this.provider = e.target.refProvider)}> </board-provider>
+      <board-provider baseUrl=${this.baseUrl} @change=${e => (this.provider = e.target.refProvider)}> </board-provider>
 
       <!-- Drawer content -->
       <app-drawer
@@ -80,7 +91,11 @@ class MyApp extends connect(store)(LitElement) {
         <page-board-list
           ?active=${['list-recent', 'list-by-group', 'list-by-playgroup'].indexOf(this.page) > -1}
         ></page-board-list>
-        <page-board-viewer ?active="${this.page === 'viewer'}" .provider=${this.provider}></page-board-viewer>
+        <page-board-viewer
+          ?active="${this.page === 'viewer'}"
+          .provider=${this.provider}
+          .baseUrl=${this.baseUrl}
+        ></page-board-viewer>
         <page-board-player ?active=${this.page === 'player'} .provider=${this.provider}></page-board-player>
 
         <auth-signin ?active=${this.page === 'signin'}></auth-signin>
@@ -94,13 +109,6 @@ class MyApp extends connect(store)(LitElement) {
         You are now ${this.offline ? 'offline' : 'online'}.
       </snack-bar>
     `
-  }
-
-  constructor() {
-    super()
-    // To force all event listeners for gestures to be passive.
-    // See https://www.polymer-project.org/3.0/docs/devguide/settings#setting-passive-touch-gestures
-    setPassiveTouchGestures(true)
   }
 
   firstUpdated() {

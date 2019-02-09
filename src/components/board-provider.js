@@ -7,7 +7,8 @@ import client from './board-api'
 class BoardProvider extends LitElement {
   static get properties() {
     return {
-      refProvider: Object
+      refProvider: Object,
+      baseUrl: String
     }
   }
 
@@ -34,7 +35,8 @@ class BoardProvider extends LitElement {
               refProvider: this.refProvider
             })
 
-            // s.app.baseUrl = undefined;
+            scene.app.baseUrl = this.baseUrl
+            console.log('provider', scene.app.baseUrl)
           }
 
           resolve(scene, {

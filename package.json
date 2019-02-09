@@ -17,7 +17,7 @@
     "test:regenerate_screenshots": "mocha test/integration/screenshots-baseline/regenerate.js --timeout=15000"
   },
   "dependencies": {
-    "@hatiolab/things-scene": "^2.5.0-rc.19",
+    "@hatiolab/things-scene": "^2.5.0-rc.20",
     "@polymer/app-layout": "^3.0.0",
     "@polymer/iron-icons": "^3.0.1",
     "@polymer/paper-icon-button": "^3.0.2",
@@ -28,7 +28,7 @@
     "@polymer/polymer": "^3.1.0",
     "@things-shell/board-api-gql": "^0.1.5",
     "@things-shell/board-player": "^0.1.4",
-    "@things-shell/board-viewer": "^0.0.6",
+    "@things-shell/board-viewer": "^0.1.1",
     "@things-shell/client-auth": "^0.1.12",
     "@things-shell/client-i18n": "^0.0.3",
     "@webcomponents/webcomponentsjs": "^2.2.4",

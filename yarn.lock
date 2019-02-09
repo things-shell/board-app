@@ -491,6 +491,14 @@
   dependencies:
     lodash "^4.17.11"
 
+"@hatiolab/things-scene@^2.5.0-rc.20":
+  version "2.5.0-rc.20"
+  resolved "https://registry.yarnpkg.com/@hatiolab/things-scene/-/things-scene-2.5.0-rc.20.tgz#5a68970878a243dc8a3624bd3b125053a7ab6a8c"
+  integrity sha512-rZiteiy8L8XTUEX2vjLMu6pBkTBfSr9dx/V3JHzw7OOAerz7coX6Uf15XcPGqp97guF185dnQl4xHZGOoHZHuA==
+  dependencies:
+    lodash "^4.17.11"
+    url-polyfill "^1.1.3"
+
 "@material/animation@^0.40.1":
   version "0.40.1"
   resolved "https://registry.yarnpkg.com/@material/animation/-/animation-0.40.1.tgz#c5ff31e7d7e17324a0045e889d3530b150b9fcec"
@@ -989,12 +997,12 @@
     "@things-shell/client-utils" "^0.0.5"
     lit-element "^2.0.1"
 
-"@things-shell/board-viewer@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@things-shell/board-viewer/-/board-viewer-0.0.6.tgz#c7e7091655079a848c2fa0ab4e18d77b625f530e"
-  integrity sha512-NSeT49RrC27NBc3iPaProoeP9yuwdXEgVIh4OTt/qqAp4TQFZR7kSy51DzHkkn8NYIBbm9JsmIgaKSO94AmWZw==
+"@things-shell/board-viewer@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@things-shell/board-viewer/-/board-viewer-0.1.1.tgz#97be4e653ebf2946b9f5d880f0e0bc920a0ef753"
+  integrity sha512-v4pOmPzScMH5vG2BCT9e3hxOzpnlRn7U0pWfL3v04b4O2hQ9KO9ZmPPqR930XlKdLjQpBGmy8UecFiUnpDv0BA==
   dependencies:
-    "@hatiolab/things-scene" "^2.5.0-rc.19"
+    "@hatiolab/things-scene" "^2.5.0-rc.20"
     "@material/mwc-button" "^0.3.5"
     "@material/mwc-fab" "^0.3.5"
     "@material/mwc-icon" "^0.3.5"
@@ -9288,6 +9296,11 @@ url-parse-lax@^1.0.0:
   integrity sha1-evjzA2Rem9eaJy56FKxovAYJ2nM=
   dependencies:
     prepend-http "^1.0.1"
+
+url-polyfill@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/url-polyfill/-/url-polyfill-1.1.3.tgz#ce0bdf2e923aa6f66bc198ab776323dfc5a91e62"
+  integrity sha512-xIAXc0DyXJCd767sSeRu4eqisyYhR0z0sohWArCn+WPwIatD39xGrc09l+tluIUi6jGkpGa8Gz8TKwkKYxMQvQ==
 
 url-template@^2.0.8:
   version "2.0.8"

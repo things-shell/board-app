@@ -23,7 +23,8 @@ class PageBoardViewer extends connect(store)(PageViewElement) {
     return {
       board: Object,
       board$: Object,
-      provider: Object
+      provider: Object,
+      baseUrl: String
     }
   }
 
@@ -51,7 +52,7 @@ class PageBoardViewer extends connect(store)(PageViewElement) {
         <label>${this.board && this.board.name}</label> <span>${(this.board && this.board.description) || ''}</span>
       </page-toolbar>
 
-      <board-viewer .board=${this.board$} .provider=${this.provider}></board-viewer>
+      <board-viewer .board=${this.board$} .provider=${this.provider} .baseUrl=${this.baseUrl}></board-viewer>
     `
   }
 
