@@ -8,8 +8,6 @@ import { store } from '../store'
 import { updateDrawerState } from '../actions/app.js'
 // import { i18next } from '@things-shell/client-i18n'
 
-import { menuIcon } from '../components/my-icons.js'
-
 class PageToolbar extends connect(store)(LitElement) {
   static get is() {
     return 'page-toolbar'
@@ -67,7 +65,7 @@ class PageToolbar extends connect(store)(LitElement) {
           overflow: hidden;
         }
 
-        [logo] {
+        [menu] {
           width: 45px;
           height: 45px;
         }
@@ -123,9 +121,7 @@ class PageToolbar extends connect(store)(LitElement) {
 
   render() {
     return html`
-      <button @click="${this.onDrawerOpen}" ?hidden=${this.drawerOpened} logo>
-        ${menuIcon}
-      </button>
+      <mwc-icon @click="${this.onDrawerOpen}" ?hidden=${this.drawerOpened} menu>menu</mwc-icon>
 
       <slot></slot>
 

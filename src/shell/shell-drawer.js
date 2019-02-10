@@ -9,8 +9,6 @@ import { CLEAR_BOARD_LIST, SET_CURRENT_BOARD } from '../actions/board'
 import { fetchGroupList, CLEAR_GROUP_LIST } from '../actions/group'
 import { fetchPlayGroupList, CLEAR_PLAYGROUP_LIST } from '../actions/play-group'
 
-import { menuIcon } from '../components/my-icons.js'
-
 class ShellDrawer extends connect(store)(LitElement) {
   constructor() {
     super()
@@ -63,12 +61,13 @@ class ShellDrawer extends connect(store)(LitElement) {
           color: var(--third-color);
         }
 
-        [logo] {
+        [back] {
           width: 45px;
           height: 45px;
         }
 
         [main-title] {
+          display: inline;
           height: 45px;
           min-height: 45px;
           padding-left: 9px;
@@ -85,7 +84,7 @@ class ShellDrawer extends connect(store)(LitElement) {
   render() {
     return html`
       <app-toolbar>
-        <button @click="${this.onDrawerCollapse}" logo>${menuIcon}</button>
+        <mwc-icon @click=${this.onDrawerCollapse} back>arrow_back</mwc-icon>
         <h3 main-title>Board Viewer</h3>
       </app-toolbar>
 

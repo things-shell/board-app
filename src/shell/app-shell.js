@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit-element'
+import { LitElement, html } from 'lit-element'
 import { setPassiveTouchGestures } from '@polymer/polymer/lib/utils/settings.js'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js'
@@ -145,10 +145,6 @@ class MyApp extends connect(store)(LitElement) {
     if (this.authError) {
       store.dispatch(showSnackbar(this.authError))
     }
-  }
-
-  _menuButtonClicked() {
-    store.dispatch(updateDrawerState(true))
   }
 
   drawerOpenedChanged(e) {
