@@ -6,9 +6,9 @@ import '@material/mwc-button/mwc-button'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 import { store } from '../store'
 import { updateDrawerState } from '../actions/app.js'
-import { i18next } from '@things-shell/client-i18n'
+import { i18next, localize } from '@things-shell/client-i18n'
 
-class PageToolbar extends connect(store)(LitElement) {
+class PageToolbar extends connect(store)(localize(i18next)(LitElement)) {
   static get is() {
     return 'page-toolbar'
   }
@@ -146,9 +146,11 @@ class PageToolbar extends connect(store)(LitElement) {
             }}
             @click=${e => this.onChangeLocale(e)}
           >
-            <a href="" locale="en-US" selected>English</a>
-            <a href="" locale="ko-KR">한글</a>
-            <a href="" locale="zh-CN">中文</a>
+            ${[['en-US', 'English'], ['ko-KR', '한글'], ['zh-CN', '中文']].map(
+              locale => html`
+                <a href="" locale=${locale[0]} ?selected=${locale[0] == this.locale}>${locale[1]}</a>
+              `
+            )}
           </div>
         </div>
       </div>

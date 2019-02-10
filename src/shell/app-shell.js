@@ -31,7 +31,7 @@ i18next.addResourceBundle('zh-CN', 'translations', zh_CN['zh-CN'], true, true)
 import { AppTheme } from '../styles/app-theme'
 import { style } from './app-shell-style.js'
 
-class MyApp extends connect(store)(localize(i18next)(LitElement)) {
+class AppShell extends connect(store)(localize(i18next)(LitElement)) {
   /* localize를 initialize하는 component는 localize(i18next) mixin을 사용해야 한다. */
   constructor() {
     super()
@@ -41,6 +41,16 @@ class MyApp extends connect(store)(localize(i18next)(LitElement)) {
     // To force all event listeners for gestures to be passive.
     // See https://www.polymer-project.org/3.0/docs/devguide/settings#setting-passive-touch-gestures
     setPassiveTouchGestures(true)
+
+    i18next.on('initialized', () => {
+      store.dispatch({
+        type: 'SET-LOCALE',
+        locale: i18next.language
+      })
+
+      this.onLocaleChanged()
+    })
+    i18next.on('languageChanged', () => this.onLocaleChanged())
   }
 
   static get properties() {
@@ -125,16 +135,6 @@ class MyApp extends connect(store)(localize(i18next)(LitElement)) {
     installRouter(location => store.dispatch(navigate(decodeURIComponent(location.pathname))))
     installOfflineWatcher(offline => store.dispatch(updateOffline(offline)))
     installMediaQueryWatcher(`(min-width: 768px)`, matches => store.dispatch(updateLayout(matches)))
-
-    i18next.on('initialized', () => {
-      store.dispatch({
-        type: 'SET-LOCALE',
-        locale: i18next.language
-      })
-
-      this.onLocaleChanged()
-    })
-    i18next.on('languageChanged', () => this.onLocaleChanged())
   }
 
   updated(change) {
@@ -212,4 +212,4 @@ class MyApp extends connect(store)(localize(i18next)(LitElement)) {
   }
 }
 
-window.customElements.define('app-shell', MyApp)
+window.customElements.define('app-shell', AppShell)
