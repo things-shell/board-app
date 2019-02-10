@@ -160,7 +160,13 @@ class MyApp extends connect(store)(localize(i18next)(LitElement)) {
   onAuthenticatedChanged(e) {
     var auth = e.detail
     store.dispatch(updateAuthenticated(auth))
-    store.dispatch(showSnackbar(`You are now signed ${auth.authenticated ? 'in' : 'out'}`))
+    store.dispatch(
+      showSnackbar(
+        i18next.t('text.you.are.now.in', {
+          state: i18next.t(auth.authenticated ? 'text.signed in' : 'text.signed out')
+        })
+      )
+    )
   }
 
   onAuthErrorChanged() {

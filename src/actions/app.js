@@ -10,6 +10,8 @@ import { SET_CURRENT_GROUP } from './board.js'
 
 import { fetchBoard, fetchBoardList } from '../actions/board'
 
+import { i18next } from '@things-shell/client-i18n'
+
 export const navigate = path => (dispatch, getState) => {
   // Extract the page name from path.
   const page = path === '/' ? 'list-recent' : path.split('/')[1]
@@ -130,7 +132,13 @@ export const showSnackbar = message => dispatch => {
 export const updateOffline = offline => (dispatch, getState) => {
   // Show the snackbar only if offline status changes.
   if (offline !== getState().app.offline) {
-    dispatch(showSnackbar(`You are now in ${offline ? 'offline' : 'online'}`))
+    dispatch(
+      showSnackbar(
+        i18next.t('text.you.are.now.in', {
+          state: i18next.t(offline ? 'text.offline' : 'text.online')
+        })
+      )
+    )
   }
   dispatch({
     type: UPDATE_OFFLINE,
