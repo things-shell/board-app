@@ -1,8 +1,9 @@
 import { LitElement, html, css } from 'lit-element'
+import { i18next, localize } from '@things-shell/client-i18n'
 
 import '@material/mwc-icon/mwc-icon'
 
-class SearchInput extends LitElement {
+class SearchInput extends localize(i18next)(LitElement) {
   static get properties() {
     return {
       value: String
@@ -35,6 +36,7 @@ class SearchInput extends LitElement {
           this.shadowRoot.querySelector('#clear').hidden = !(this.value && this.value.length > 0)
         }}
         .value=${this.value}
+        placeholder=${i18next.t('keyword')}
       />
       <mwc-icon
         id="clear"

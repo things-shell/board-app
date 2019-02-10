@@ -7,7 +7,7 @@ import { installRouter } from 'pwa-helpers/router.js'
 import { updateMetadata } from 'pwa-helpers/metadata.js'
 
 import '@things-shell/client-auth'
-// import { i18next } from '@things-shell/client-i18n'
+import { i18next, localize } from '@things-shell/client-i18n'
 
 import { store } from '../store.js'
 
@@ -20,10 +20,19 @@ import '../shell/shell-drawer.js'
 import '../components/snack-bar.js'
 import '../components/board-provider'
 
+import en_US from '../resources/en-US.js'
+import ko_KR from '../resources/ko-KR.js'
+import zh_CN from '../resources/zh-CN.js'
+
+i18next.addResourceBundle('en-US', 'translations', en_US['en-US'], true, true)
+i18next.addResourceBundle('ko-KR', 'translations', ko_KR['ko-KR'], true, true)
+i18next.addResourceBundle('zh-CN', 'translations', zh_CN['zh-CN'], true, true)
+
 import { AppTheme } from '../styles/app-theme'
 import { style } from './app-shell-style.js'
 
-class MyApp extends connect(store)(LitElement) {
+class MyApp extends connect(store)(localize(i18next)(LitElement)) {
+  /* localize를 initialize하는 component는 localize(i18next) mixin을 사용해야 한다. */
   constructor() {
     super()
 
@@ -56,7 +65,8 @@ class MyApp extends connect(store)(LitElement) {
 
       /* Board Reference Provider */
       provider: { type: Object },
-      baseUrl: { type: String }
+      baseUrl: { type: String },
+      meta: { type: String }
     }
   }
 
@@ -105,6 +115,8 @@ class MyApp extends connect(store)(LitElement) {
         <page-404 ?active=${this.page === 'page-404'}></page-404>
       </main>
 
+      <aside class="meta">${this.meta}</aside>
+
       <snack-bar ?active=${this.snackbarOpened}>${this.message}</snack-bar>
     `
   }
@@ -113,6 +125,16 @@ class MyApp extends connect(store)(LitElement) {
     installRouter(location => store.dispatch(navigate(decodeURIComponent(location.pathname))))
     installOfflineWatcher(offline => store.dispatch(updateOffline(offline)))
     installMediaQueryWatcher(`(min-width: 768px)`, matches => store.dispatch(updateLayout(matches)))
+
+    i18next.on('initialized', () => {
+      store.dispatch({
+        type: 'SET-LOCALE',
+        locale: i18next.language
+      })
+
+      this.onLocaleChanged()
+    })
+    i18next.on('languageChanged', () => this.onLocaleChanged())
   }
 
   updated(change) {
@@ -163,6 +185,13 @@ class MyApp extends connect(store)(LitElement) {
         this.forceNarrow = false
         store.dispatch(updateDrawerState(true))
     }
+  }
+
+  onLocaleChanged() {
+    this.meta = i18next.t('env-mention', {
+      version: process.env['APP-VERSION'],
+      env: process.env['NODE_ENV']
+    })
   }
 
   stateChanged(state) {

@@ -6,7 +6,7 @@ import '@material/mwc-button/mwc-button'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 import { store } from '../store'
 import { updateDrawerState } from '../actions/app.js'
-// import { i18next } from '@things-shell/client-i18n'
+import { i18next } from '@things-shell/client-i18n'
 
 class PageToolbar extends connect(store)(LitElement) {
   static get is() {
@@ -22,7 +22,7 @@ class PageToolbar extends connect(store)(LitElement) {
 
   static get properties() {
     return {
-      // statePath: 'auth.locale'
+      // statePath: 'app.locale'
       locale: Object,
       // statePath: 'app.drawerOpened'
       drawerOpened: Boolean,
@@ -178,7 +178,7 @@ class PageToolbar extends connect(store)(LitElement) {
   onChangeLocale(e) {
     var locale = e.target.getAttribute('locale')
 
-    // i18next.changeLanguage(locale)
+    i18next.changeLanguage(locale)
 
     store.dispatch({
       type: 'SET-LOCALE',

@@ -75,7 +75,7 @@ class PageBoardList extends connect(store)(PageViewElement) {
   render() {
     return html`
       <page-toolbar>
-        <search-input .value=${this.keyword} label="search"> </search-input>
+        <search-input .value=${this.keyword}> </search-input>
       </page-toolbar>
 
       <nav>

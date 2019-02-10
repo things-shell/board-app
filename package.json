@@ -26,7 +26,7 @@
     "@things-shell/board-player": "^0.1.4",
     "@things-shell/board-viewer": "^0.1.1",
     "@things-shell/client-auth": "^0.1.12",
-    "@things-shell/client-i18n": "^0.0.3",
+    "@things-shell/client-i18n": "^0.0.4",
     "@webcomponents/webcomponentsjs": "^2.2.4",
     "lit-element": "^2.0.1",
     "pwa-helpers": "^0.9.0",

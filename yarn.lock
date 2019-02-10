@@ -781,10 +781,10 @@
     lit-element "^2.0.1"
     pwa-helpers "^0.9.0"
 
-"@things-shell/client-i18n@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@things-shell/client-i18n/-/client-i18n-0.0.3.tgz#39dd9036642520d848df466561c8a94f8e0c645f"
-  integrity sha512-51okFpkFbMdlL3HJ3kDvfS+axEYfvGWGSs1jObCRLQUAzZeo/w8p0qit8m1DClkLwEpaRs+zlU/jnv+UDaNymw==
+"@things-shell/client-i18n@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@things-shell/client-i18n/-/client-i18n-0.0.4.tgz#28adfd18e6a53494403e7cc2cd63c66e612de2e4"
+  integrity sha512-fh6vIrZBipR6jL/RVI+Ocl9Zk2tuRF7FKK9F0eoZY28mVEGdxf5H6sDdR0vs63DYW8SFNLydfMno7yLT7y4VJg==
   dependencies:
     "@things-shell/client-utils" "^0.0.5"
     i18next "^14.0.1"
