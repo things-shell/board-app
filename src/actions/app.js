@@ -118,9 +118,10 @@ export const followRouteChange = (page, id) => dispatch => {
 
 let snackbarTimer
 
-export const showSnackbar = () => dispatch => {
+export const showSnackbar = message => dispatch => {
   dispatch({
-    type: OPEN_SNACKBAR
+    type: OPEN_SNACKBAR,
+    message
   })
   window.clearTimeout(snackbarTimer)
   snackbarTimer = window.setTimeout(() => dispatch({ type: CLOSE_SNACKBAR }), 3000)
@@ -129,7 +130,7 @@ export const showSnackbar = () => dispatch => {
 export const updateOffline = offline => (dispatch, getState) => {
   // Show the snackbar only if offline status changes.
   if (offline !== getState().app.offline) {
-    dispatch(showSnackbar())
+    dispatch(showSnackbar(`You are now in ${offline ? 'offline' : 'online'}`))
   }
   dispatch({
     type: UPDATE_OFFLINE,

@@ -14,6 +14,7 @@ export const AppTheme = css`
     --primary-dark-opacity15-color: rgba(0, 0, 0, 0.15);
 
     --app-drawer-width: 200px;
+    --app-secondary-color: var(--primary-color);
 
     --paper-radio-button-size: 12px;
     --paper-radio-button-label-color: var(--primary-text-color);

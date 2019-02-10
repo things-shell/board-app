@@ -1,7 +1,8 @@
 import { auth } from '@things-shell/client-auth'
 import { BoardClient } from '@things-shell/board-api-gql'
 
-// import ThingsSnackbar from '../components/things-snackbar'
+import { store } from '../store'
+import { showSnackbar } from '../actions/app'
 
 const GRAPHQL_URI = 'http://localhost:3000/graphql'
 const defaultOptions = {
@@ -22,7 +23,7 @@ const ERROR_HANDLER = ({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ message, locations, path }) => {
       console.error(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
-      // ThingsSnackbar.toast(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
+      store.dispatch(showSnackbar(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`))
     })
 
   if (networkError) {
@@ -33,7 +34,7 @@ const ERROR_HANDLER = ({ graphQLErrors, networkError }) => {
         document.dispatchEvent(new CustomEvent(auth.authRequiredEvent, { bubbles: true, composed: true }))
         break
       default:
-      // ThingsSnackbar.toast(`[Network error - ${networkError.statusCode}]: ${networkError}`)
+        store.dispatch(showSnackbar(`[Network error - ${networkError.statusCode}]: ${networkError}`))
     }
   }
 }

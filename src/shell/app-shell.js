@@ -11,7 +11,7 @@ import '@things-shell/client-auth'
 
 import { store } from '../store.js'
 
-import { navigate, updateOffline, updateLayout, updateDrawerState } from '../actions/app.js'
+import { navigate, updateOffline, updateLayout, updateDrawerState, showSnackbar } from '../actions/app.js'
 import { updateUser, updateAuthenticated } from '../actions/auth.js'
 
 import '@polymer/app-layout/app-drawer/app-drawer.js'
@@ -20,7 +20,7 @@ import '../shell/shell-drawer.js'
 import '../components/snack-bar.js'
 import '../components/board-provider'
 
-import { AppTheme } from './app-theme'
+import { AppTheme } from '../styles/app-theme'
 import { style } from './app-shell-style.js'
 
 class MyApp extends connect(store)(LitElement) {
@@ -92,7 +92,7 @@ class MyApp extends connect(store)(LitElement) {
           ?active=${['list-recent', 'list-by-group', 'list-by-playgroup'].indexOf(this.page) > -1}
         ></page-board-list>
         <page-board-viewer
-          ?active="${this.page === 'viewer'}"
+          ?active=${this.page === 'viewer'}
           .provider=${this.provider}
           .baseUrl=${this.baseUrl}
         ></page-board-viewer>
@@ -102,12 +102,10 @@ class MyApp extends connect(store)(LitElement) {
         <auth-signup ?active=${this.page === 'signup'}></auth-signup>
         <auth-profile ?active=${this.page === 'profile'}></auth-profile>
 
-        <page-404 ?active="${this.page === 'page-404'}"></page-404>
+        <page-404 ?active=${this.page === 'page-404'}></page-404>
       </main>
 
-      <snack-bar ?active="${this.snackbarOpened}">
-        You are now ${this.offline ? 'offline' : 'online'}.
-      </snack-bar>
+      <snack-bar ?active=${this.snackbarOpened}>${this.message}</snack-bar>
     `
   }
 
@@ -138,13 +136,15 @@ class MyApp extends connect(store)(LitElement) {
   }
 
   onAuthenticatedChanged(e) {
-    store.dispatch(updateAuthenticated(e.detail))
+    var auth = e.detail
+    store.dispatch(updateAuthenticated(auth))
+    store.dispatch(showSnackbar(`You are now signed ${auth.authenticated ? 'in' : 'out'}`))
   }
 
   onAuthErrorChanged() {
-    // if (this.authError) {
-    //   ThingsSnackbar.toast(this.authError)
-    // }
+    if (this.authError) {
+      store.dispatch(showSnackbar(this.authError))
+    }
   }
 
   _menuButtonClicked() {
@@ -172,6 +172,7 @@ class MyApp extends connect(store)(LitElement) {
   stateChanged(state) {
     this.page = state.app.page
     this.offline = state.app.offline
+    this.message = state.app.message
     this.snackbarOpened = state.app.snackbarOpened
 
     this.drawerOpened = state.app.drawerOpened

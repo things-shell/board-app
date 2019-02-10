@@ -7,6 +7,8 @@ import { PageViewElement } from './page-view-element.js'
 import './page-toolbar'
 import '../components/search-input'
 
+import { ScrollbarStyles } from '../styles/scrolbar-styles'
+
 class PageBoardList extends connect(store)(PageViewElement) {
   constructor() {
     super()
@@ -23,6 +25,7 @@ class PageBoardList extends connect(store)(PageViewElement) {
 
   static get styles() {
     return [
+      ScrollbarStyles,
       css`
         :host {
           display: flex;

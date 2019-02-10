@@ -14,7 +14,8 @@ const INITIAL_STATE = {
   offline: false,
   drawerOpened: false,
   snackbarOpened: false,
-  wideLayout: false
+  wideLayout: false,
+  message: ''
 }
 
 const app = (state = INITIAL_STATE, action) => {
@@ -42,7 +43,8 @@ const app = (state = INITIAL_STATE, action) => {
     case OPEN_SNACKBAR:
       return {
         ...state,
-        snackbarOpened: true
+        snackbarOpened: true,
+        message: action.message
       }
     case CLOSE_SNACKBAR:
       return {

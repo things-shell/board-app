@@ -5,9 +5,7 @@ export const SET_CURRENT_BOARD = 'SET-CURRENT-BOARD'
 export const SET_CURRENT_GROUP = 'SET-CURRENT-GROUP'
 
 import client from '../components/board-api'
-import { setRoute } from './app'
-
-// import ThingsSnackbar from '../../components/things-snackbar'
+import { setRoute, showSnackbar } from './app'
 
 export const fetchBoardList = (by, id, route) => async dispatch => {
   try {
@@ -113,7 +111,7 @@ export const updateBoard = board => async dispatch => {
       }
     })
 
-    // ThingsSnackbar.toast('Saved.')
+    dispatch(showSnackbar('Saved'))
 
     return dispatch
   } catch (error) {
