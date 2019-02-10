@@ -85,7 +85,7 @@ class ShellDrawer extends connect(store)(LitElement) {
   render() {
     return html`
       <app-toolbar>
-        <button class="menu-btn" title="Menu" @click="${this.onDrawerCollapse}">${menuIcon}</button>
+        <button @click="${this.onDrawerCollapse}" logo>${menuIcon}</button>
         <h3 main-title>Board Viewer</h3>
       </app-toolbar>
 

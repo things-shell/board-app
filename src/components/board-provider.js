@@ -36,7 +36,6 @@ class BoardProvider extends LitElement {
             })
 
             scene.app.baseUrl = this.baseUrl
-            console.log('provider', scene.app.baseUrl)
           }
 
           resolve(scene, {

@@ -55,6 +55,7 @@ class PageBoardList extends connect(store)(PageViewElement) {
           background-color: lightgray;
           color: indigo;
           font-size: 0.8em;
+          text-decoration: none;
         }
 
         span {
