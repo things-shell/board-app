@@ -91,7 +91,7 @@ class AppShell extends connect(store)(localize(i18next)(LitElement)) {
         @authenticated-changed=${this.onAuthenticatedChanged}
         @profile-changed=${this.onProfileChanged}
         @error-changed=${this.onAuthErrorChanged}
-        endpoint=${this.baseUrl}
+        .endpoint=${this.baseUrl}
       ></auth-router>
 
       <board-provider baseUrl=${this.baseUrl} @change=${e => (this.provider = e.target.refProvider)}> </board-provider>
@@ -195,7 +195,7 @@ class AppShell extends connect(store)(localize(i18next)(LitElement)) {
 
   onLocaleChanged() {
     this.meta = i18next.t('env-mention', {
-      version: process.env['APP-VERSION'],
+      version: process.env['APP_VERSION'],
       env: process.env['NODE_ENV']
     })
   }

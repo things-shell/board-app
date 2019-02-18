@@ -5,6 +5,39 @@ import { ReferenceMap, create, error } from '@hatiolab/things-scene'
 import client from './board-api'
 
 class BoardProvider extends LitElement {
+  constructor() {
+    super()
+    import('@things-scene/form')
+    import('@things-scene/billboard')
+    import('@things-scene/chartjs')
+    import('@things-scene/clock')
+    import('@things-scene/clone')
+    import('@things-scene/compass')
+    import('@things-scene/echart')
+    import('@things-scene/elasticsearch')
+    import('@things-scene/firebase')
+    import('@things-scene/forklift')
+    import('@things-scene/form')
+    import('@things-scene/gauge')
+    import('@things-scene/google-map')
+    import('@things-scene/half-roundrect')
+    import('@things-scene/indoor-map')
+    import('@things-scene/legend')
+    import('@things-scene/marker')
+    import('@things-scene/mpi')
+    import('@things-scene/person')
+    import('@things-scene/progressbar')
+    import('@things-scene/random')
+    import('@things-scene/restful')
+    import('@things-scene/slam')
+    import('@things-scene/tab')
+    import('@things-scene/table')
+    import('@things-scene/traffic')
+    import('@things-scene/stomp')
+    import('@things-scene/mqtt')
+    import('@things-scene/wheel-sorter')
+  }
+
   static get properties() {
     return {
       refProvider: Object,

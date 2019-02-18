@@ -100,15 +100,15 @@ export const followRouteChange = (page, id) => dispatch => {
       break
 
     case 'signup':
-      import('@things-shell/client-auth/template/signup.js')
+      import('@things-shell/client-auth/template-shell/signup.js')
       break
 
     case 'signin':
-      import('@things-shell/client-auth/template/signin.js')
+      import('@things-shell/client-auth/template-shell/signin.js')
       break
 
     case 'profile':
-      import('@things-shell/client-auth/template/profile.js')
+      import('@things-shell/client-auth/template-shell/profile.js')
       break
 
     default:
